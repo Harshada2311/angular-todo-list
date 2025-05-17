@@ -1,0 +1,46 @@
+<div class="todo-container">
+    <h1>To-Do List</h1>
+  
+    <div class="input-section">
+      <input type="text" [(ngModel)]="task" placeholder="Enter new task" />
+      <button (click)="addTask()">Add</button>
+    </div>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tasks; let i = index">
+          <td [class.completed]="item.completed">{{ item.name }}</td>
+          <td>{{ item.completed ? 'Completed' : 'Pending' }}</td>
+          <td>
+            <button (click)="toggleComplete(i)">
+              {{ item.completed ? 'Undo' : 'Done' }}
+            </button>
+            <button (click)="deleteTask(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="task-count">
+      <p>Total Tasks: {{ totalTasks }}</p>
+      <p>Completed Tasks: {{completedTasks }}</p>
+    </div>
+
+
+    <!-- <ul>
+      <li *ngFor="let item of tasks; let i = index">
+        <span [class.completed]="item.completed">{{ item.name }}</span>
+        <button (click)="toggleComplete(i)">
+          {{ item.completed ? 'Undo' : 'Done' }}
+        </button>
+        <button (click)="deleteTask(i)">Delete</button>
+      </li>
+    </ul> -->
+    
+  
